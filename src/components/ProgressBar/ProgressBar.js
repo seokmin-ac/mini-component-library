@@ -21,6 +21,23 @@ const SIZES = {
   }
 };
 
+const ProgressBar = ({ value, size }) => {
+  return (
+    <Wrapper
+      size={size}
+      role="progressbar"
+      aria-valuemin="0"
+      aria-valuemax="100"
+      aria-valuenow={value}
+    >
+      <VisuallyHidden>{value}%</VisuallyHidden>
+      <BarWrapper>
+        <Bar style={{'--progress-value': `${value}%`}}/>
+      </BarWrapper>
+    </Wrapper>
+  );
+};
+
 const Wrapper = styled.div`
   height: ${props => SIZES[props.size].height};
   border-radius: ${props => SIZES[props.size].borderRadius};
@@ -40,22 +57,5 @@ const Bar = styled.div`
   height: 100%;
   background-color: ${COLORS.primary};
 `
-
-const ProgressBar = ({ value, size }) => {
-  return (
-    <Wrapper
-      size={size}
-      role="progressbar"
-      aria-valuemin="0"
-      aria-valuemax="100"
-      aria-valuenow={value}
-    >
-      <VisuallyHidden>{value}%</VisuallyHidden>
-      <BarWrapper>
-        <Bar style={{'--progress-value': `${value}%`}}/>
-      </BarWrapper>
-    </Wrapper>
-  );
-};
 
 export default ProgressBar;
