@@ -10,7 +10,7 @@ const SIZES = {
   small: {
     verticalPadding: 6,
     underlineStroke: 1,
-    iconSize: 15,
+    iconSize: 16,
     iconStroke: 1,
     inputPadding: 10,
     fontSize: 14,
@@ -27,24 +27,23 @@ const SIZES = {
 
 const IconInput = ({ label, icon, width = 250, size, placeholder }) => {
   const iconSize = SIZES[size].iconSize;
-  const inputWidth = width - iconSize - 4;
   return (
     <Wrapper
       style={{
-        '--width': `${width}px`,
-        '--vertical-padding': `${SIZES[size].verticalPadding}px`,
         '--underline-stroke': `${SIZES[size].underlineStroke}px`,
       }}
     >
-      <IconWrapper>
+      <VisuallyHidden>{label}</VisuallyHidden>
+      <IconWrapper style={{ '--icon-size': `${iconSize}px` }}>
         <Icon id={icon} size={iconSize} strokeWidth={SIZES[size].iconStroke} />
       </IconWrapper>
       <Input
         placeholder={placeholder}
         size={size}
         style={{
-          '--input-width': `${inputWidth}px`,
-          '--input-padding': `${SIZES[size].inputPadding}px`,
+          '--width': `${width}px`,
+          '--vertical-padding': `${SIZES[size].verticalPadding}px`,
+          '--input-padding': `${SIZES[size].inputPadding + iconSize}px`,
           '--font-size': `${SIZES[size].fontSize / 16}rem`,
         }}
       ></Input>
@@ -53,8 +52,8 @@ const IconInput = ({ label, icon, width = 250, size, placeholder }) => {
 };
 
 const Wrapper = styled.div`
-  width: var(--width);
-  padding: var(--vertical-padding) 2px;
+  position: relative;
+  width: fit-content;
   border-bottom: var(--underline-stroke) solid ${COLORS.black};
 
   color: ${COLORS.gray500};
@@ -65,18 +64,20 @@ const Wrapper = styled.div`
 `;
 
 const IconWrapper = styled.div`
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  margin: auto 0;
+  height: var(--icon-size);
   color: ${COLORS.gray700};
 `;
 
 const Input = styled.input`
-  width: var(--input-width);
+  width: var(--width);
+  padding: var(--vertical-padding) 2px;
   padding-left: var(--input-padding);
+  border: none;
   font-size: var(--font-size);
-
-  &,
-  &:focus {
-    border: none;
-  }
 `;
 
 export default IconInput;
