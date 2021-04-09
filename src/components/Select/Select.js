@@ -16,7 +16,7 @@ const Select = ({ label, value, onChange, children }) => {
       <Presentational>
         {displayedValue}
         <IconWrapper>
-          <Icon id="chevron-down" size="24" strokeWidth="2" />{" "}
+          <Icon id="chevron-down" size="24" strokeWidth="2" />
         </IconWrapper>
       </Presentational>
     </Wrapper>
