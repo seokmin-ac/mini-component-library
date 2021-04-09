@@ -47,34 +47,24 @@ const Presentational = styled.div`
   color: ${COLORS.gray700};
   background-color: ${COLORS.transparentGray15};
 
-  &:focus {
-    outline: none;
-  }
   ${NativeSelect}:hover + & {
     color: ${COLORS.black};
   }
+  /**
+   * Firefox's default focus stylesheet
+   * https://searchfox.org/mozilla-central/source/layout/style/res/ua.css
+   */
   ${NativeSelect}:focus-visible + & {
-    /**
-     * Firefox's default stylesheet
-     * https://searchfox.org/mozilla-central/source/layout/style/res/ua.css
-     */
     outline: 1px dotted;
-
-    /**
-     * Chrome/Safari's default stylesheet
-     * https://source.chromium.org/chromium/chromium/src/+/master:third_party/blink/renderer/core/html/resources/html.css
-     */
-    outline: auto 5px -webkit-focus-ring-color;
   }
   @supports not (-moz-appearance: none) {
-    & {
-      outline-offset: -2px;
-    }
-  }
-  @supports (-webkit-hyphens: none) {
-    /** Safari doesn't support :focus-visible. */
+    /**
+     * Chrome/Safari's default focus stylesheet
+     * https://source.chromium.org/chromium/chromium/src/+/master:third_party/blink/renderer/core/html/resources/html.css
+     */
     ${NativeSelect}:focus + & {
       outline: auto 5px -webkit-focus-ring-color;
+      outline-offset: -2px;
     }
   }
 `;
