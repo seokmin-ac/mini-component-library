@@ -28,11 +28,7 @@ const SIZES = {
 const IconInput = ({ label, icon, width = 250, size, placeholder }) => {
   const iconSize = SIZES[size].iconSize;
   return (
-    <Wrapper
-      style={{
-        '--underline-stroke': `${SIZES[size].underlineStroke}px`,
-      }}
-    >
+    <Wrapper>
       <VisuallyHidden>{label}</VisuallyHidden>
       <IconWrapper style={{ '--icon-size': `${iconSize}px` }}>
         <Icon id={icon} size={iconSize} strokeWidth={SIZES[size].iconStroke} />
@@ -45,6 +41,7 @@ const IconInput = ({ label, icon, width = 250, size, placeholder }) => {
           '--vertical-padding': `${SIZES[size].verticalPadding}px`,
           '--input-padding': `${SIZES[size].inputPadding + iconSize}px`,
           '--font-size': `${SIZES[size].fontSize / 16}rem`,
+          '--underline-stroke': `${SIZES[size].underlineStroke}px`,
         }}
       ></Input>
     </Wrapper>
@@ -53,13 +50,10 @@ const IconInput = ({ label, icon, width = 250, size, placeholder }) => {
 
 const Wrapper = styled.div`
   position: relative;
-  width: fit-content;
-  border-bottom: var(--underline-stroke) solid ${COLORS.black};
+  color: ${COLORS.gray700};
 
-  color: ${COLORS.gray500};
-  & * {
-    display: inline-block;
-    vertical-align: middle;
+  &:hover {
+    color: ${COLORS.black};
   }
 `;
 
@@ -69,7 +63,7 @@ const IconWrapper = styled.div`
   bottom: 0;
   margin: auto 0;
   height: var(--icon-size);
-  color: ${COLORS.gray700};
+  pointer-events: none;
 `;
 
 const Input = styled.input`
@@ -77,7 +71,15 @@ const Input = styled.input`
   padding: var(--vertical-padding) 2px;
   padding-left: var(--input-padding);
   border: none;
+  border-bottom: var(--underline-stroke) solid ${COLORS.black};
+  color: inherit;
   font-size: var(--font-size);
+  font-weight: bold;
+
+  &::placeholder {
+    color: ${COLORS.gray500};
+    font-weight: normal;
+  }
 `;
 
 export default IconInput;
