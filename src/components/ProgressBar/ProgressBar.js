@@ -9,16 +9,16 @@ const SIZES = {
   large: {
     height: '24px',
     borderRadius: '8px',
-    padding: '4px'
+    padding: '4px',
   },
   medium: {
     height: '12px',
-    borderRadius: '4px'
+    borderRadius: '4px',
   },
   small: {
     height: '8px',
-    borderRadius: '4px'
-  }
+    borderRadius: '4px',
+  },
 };
 
 const ProgressBar = ({ value, size }) => {
@@ -32,30 +32,30 @@ const ProgressBar = ({ value, size }) => {
     >
       <VisuallyHidden>{value}%</VisuallyHidden>
       <BarWrapper>
-        <Bar style={{'--progress-value': `${value}%`}}/>
+        <Bar style={{ '--progress-value': `${value}%` }} />
       </BarWrapper>
     </Wrapper>
   );
 };
 
 const Wrapper = styled.div`
-  height: ${props => SIZES[props.size].height};
-  border-radius: ${props => SIZES[props.size].borderRadius};
+  height: ${(props) => SIZES[props.size].height};
+  border-radius: ${(props) => SIZES[props.size].borderRadius};
   background-color: ${COLORS.transparentGray15};
   box-shadow: inset 0px 2px 4px ${COLORS.transparentGray35};
-  padding: ${props => SIZES[props.size].padding};
+  padding: ${(props) => SIZES[props.size].padding};
 `;
 
 const BarWrapper = styled.div`
   border-radius: 4px;
   overflow: hidden;
   height: 100%;
-`
+`;
 
 const Bar = styled.div`
   width: var(--progress-value);
   height: 100%;
   background-color: ${COLORS.primary};
-`
+`;
 
 export default ProgressBar;

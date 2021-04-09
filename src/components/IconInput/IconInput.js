@@ -1,10 +1,10 @@
-import React from "react";
-import styled from "styled-components";
+import React from 'react';
+import styled from 'styled-components';
 
-import { COLORS } from "../../constants";
+import { COLORS } from '../../constants';
 
-import Icon from "../Icon";
-import VisuallyHidden from "../VisuallyHidden";
+import Icon from '../Icon';
+import VisuallyHidden from '../VisuallyHidden';
 
 const SIZES = {
   small: {
@@ -31,9 +31,9 @@ const IconInput = ({ label, icon, width = 250, size, placeholder }) => {
   return (
     <Wrapper
       style={{
-        "--width": `${width}px`,
-        "--vertical-padding": `${SIZES[size].verticalPadding}px`,
-        "--underline-stroke": `${SIZES[size].underlineStroke}px`,
+        '--width': `${width}px`,
+        '--vertical-padding': `${SIZES[size].verticalPadding}px`,
+        '--underline-stroke': `${SIZES[size].underlineStroke}px`,
       }}
     >
       <IconWrapper>
@@ -43,9 +43,9 @@ const IconInput = ({ label, icon, width = 250, size, placeholder }) => {
         placeholder={placeholder}
         size={size}
         style={{
-          "--input-width": `${inputWidth}px`,
-          "--input-padding": `${SIZES[size].inputPadding}px`,
-          "--font-size": `${SIZES[size].fontSize / 16}rem`,
+          '--input-width': `${inputWidth}px`,
+          '--input-padding': `${SIZES[size].inputPadding}px`,
+          '--font-size': `${SIZES[size].fontSize / 16}rem`,
         }}
       ></Input>
     </Wrapper>
